@@ -13,33 +13,50 @@ Prompt non lo userete poi lavorando effettivamente. (o perlomeno ce lo auguriamo
 
 //Visualizzare in pagina 5 numeri casuali x 30 secondi
 const container = document.getElementById('container');
+const divNumeri = document.getElementById('numeri');
+const divNumeriUser = document.getElementById('numeri-user');
+const divTimer = document.querySelector('#timer>span');
+
 // impostiamo quanti num vogliamo generare, valore min e max rispettivamento.
 let numero=5, minimo=1, massimo=100, time=5;
 let numeriUser = [], numeriUguali = [];
 const numeriRandom = arrayNumRandom(numero,minimo,massimo);
 console.log(`i numeri random sono ${numeriRandom}`);//mi serve x debug
-container.innerHTML = `i numeri da ricordare sono ${numeriRandom}`;
+divNumeri.innerHTML = `i numeri da ricordare sono `;
 
 const clock = setInterval(()=> {
+    divNumeri.innerHTML = `i numeri da ricordare sono ${numeriRandom}`;
+    divTimer.innerHTML = time;
     if (time === 0){
-        container.innerHTML = `inserisci ora ${numero} numeri che ricordi`;
-        // memorizziamo i numeri dell'utente
-        for (let i=0; i<numero; i++){
-        numeriUser.push(parseInt(prompt(`Inserisci il ${i+1} numero che ricordi: `)));
-        // per ogni numero inserito dell'utente verifichiamo se è presente nell'array di numeri random
-        if (numeriRandom.includes(numeriUser[i])) {
-            numeriUguali.push(numeriUser[i]);
-            } 
-        }
-        console.log(`i numeri inseriti sono ${numeriUser}`);//mi serve x debug
-        console.log(`i numeri uguali sono ${numeriUguali}`);//mi serve x debug
-        container.innerHTML = `i numeri uguali sono: ${numeriUguali}`;
+        divNumeri.innerHTML = `inserisci ora ${numero} numeri che ricordi`;
+        divNumeriUser.innerHTML = `
+                <form>
+                    <input type="text" id="number1">
+                    <input type="text" id="number2">
+                    <input type="text" id="number3">
+                    <input type="text" id="number4">
+                    <input type="text" id="number5">
+                    <button type="button" value="Submit">Submit</button>
+                </form> 
+        `;    
         clearInterval(clock);
     }else {
-        console.log(--time)
+        divTimer.innerHTML = time--;
     };
 }, 1000);
 
+
+// memorizziamo i numeri dell'utente
+for (let i=0; i<numero; i++){
+//numeriUser.push(parseInt(prompt(`Inserisci il ${i+1} numero che ricordi: `)));
+// per ogni numero inserito dell'utente verifichiamo se è presente nell'array di numeri random
+if (numeriRandom.includes(numeriUser[i])) {
+    numeriUguali.push(numeriUser[i]);
+    } 
+}
+console.log(`i numeri inseriti sono ${numeriUser}`);//mi serve x debug
+console.log(`i numeri uguali sono ${numeriUguali}`);//mi serve x debug
+divNumeri.innerHTML = `i numeri uguali sono: ${numeriUguali}`;
 
 
 
