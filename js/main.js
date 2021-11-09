@@ -17,12 +17,12 @@ const container = document.getElementById('container');
 let numero=5, minimo=0, massimo=10, time=5;
 let numeriUser = [], numeriUguali = [];
 const numeriRandom = arrayNumRandom(numero,minimo,massimo);
-console.log(`i numeri random sono ${numeriRandom}`);
+console.log(`i numeri random sono ${numeriRandom}`);//mi serve x debug
 container.innerHTML = `i numeri da ricordare sono ${numeriRandom}`;
 
 const clock = setInterval(()=> {
     if (time === 0){
-        container.innerHTML = `inserisci ora ${numero} che ricordi`;
+        container.innerHTML = `inserisci ora ${numero} numeri che ricordi`;
         // memorizziamo i numeri dell'utente
         for (let i=0; i<numero; i++){
         numeriUser.push(parseInt(prompt(`Inserisci il ${i+1} numero che ricordi: `)));
@@ -31,8 +31,8 @@ const clock = setInterval(()=> {
             numeriUguali.push(numeriUser[i]);
             } 
         }
-        console.log(`i numeri inseriti sono ${numeriUser}`);
-        console.log(`i numeri uguali sono ${numeriUguali}`); 
+        console.log(`i numeri inseriti sono ${numeriUser}`);//mi serve x debug
+        console.log(`i numeri uguali sono ${numeriUguali}`);//mi serve x debug
         container.innerHTML = `i numeri uguali sono: ${numeriUguali}`;
         clearInterval(clock);
     }else {
