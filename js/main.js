@@ -22,6 +22,7 @@ container.innerHTML = `i numeri da ricordare sono ${numeriRandom}`;
 
 const clock = setInterval(()=> {
     if (time === 0){
+        container.innerHTML = `inserisci ora ${numero} che ricordi`;
         // memorizziamo i numeri dell'utente
         for (let i=0; i<numero; i++){
         numeriUser.push(parseInt(prompt(`Inserisci il ${i+1} numero che ricordi: `)));
