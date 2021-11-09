@@ -16,9 +16,12 @@ const container = document.getElementById('container');
 const divNumeri = document.getElementById('numeri');
 const divNumeriUser = document.getElementById('numeri-user');
 const divTimer = document.querySelector('#timer>span');
+const btn = document.getElementById('submit');
+const inputs = document.getElementsByTagName('input');
+
 
 // impostiamo quanti num vogliamo generare, valore min e max rispettivamento.
-let numero=5, minimo=1, massimo=100, time=5;
+let numero=5, minimo=1, massimo=10, time=5;
 let numeriUser = [], numeriUguali = [];
 const numeriRandom = arrayNumRandom(numero,minimo,massimo);
 console.log(`i numeri random sono ${numeriRandom}`);//mi serve x debug
@@ -29,27 +32,37 @@ const clock = setInterval(()=> {
     divTimer.innerHTML = time;
     if (time === 0){
         divNumeri.innerHTML = `inserisci ora ${numero} numeri che ricordi`;
-        divNumeriUser.innerHTML = `
-                <form>
-                    <input type="text" id="number1">
-                    <input type="text" id="number2">
-                    <input type="text" id="number3">
-                    <input type="text" id="number4">
-                    <input type="text" id="number5">
-                    <button type="button" value="Submit">Submit</button>
-                </form> 
-        `;    
+        
         clearInterval(clock);
     }else {
         divTimer.innerHTML = time--;
     };
 }, 1000);
 
+btn.addEventListener('click', ()=>{
+    numeriUser = [];
+    for (let i=0; i<inputs.length; i++){
+        numeriUser.push(inputs[i].value);
+        }
+    console.log(`i numeri user sono ${numeriUser}`);//mi serve x debug
 
+    //devo filtrare tutti in numeri contenuti in entrambi gli array e poi stamparli
+    // numeriUser.forEach( (el) => {
+    //     if (numeriRandom.includes(el)){
+    //         numeriUguali.push(el);
+    //     } 
+    // });
+    // console.log(numeriUguali);
+    }
+);
+
+
+/*
 // memorizziamo i numeri dell'utente
 for (let i=0; i<numero; i++){
 //numeriUser.push(parseInt(prompt(`Inserisci il ${i+1} numero che ricordi: `)));
 // per ogni numero inserito dell'utente verifichiamo se è presente nell'array di numeri random
+
 if (numeriRandom.includes(numeriUser[i])) {
     numeriUguali.push(numeriUser[i]);
     } 
@@ -57,6 +70,9 @@ if (numeriRandom.includes(numeriUser[i])) {
 console.log(`i numeri inseriti sono ${numeriUser}`);//mi serve x debug
 console.log(`i numeri uguali sono ${numeriUguali}`);//mi serve x debug
 divNumeri.innerHTML = `i numeri uguali sono: ${numeriUguali}`;
+
+*/
+
 
 
 
